@@ -1,4 +1,5 @@
 import logo from '../../assets/plotiart-logo.png'
+import RedesSociales from '../RedesSociales/RedesSociales'
 import './Piepagina.css'
 
 const currentYear = new Date().getFullYear()
@@ -23,6 +24,7 @@ function Piepagina() {
               <img src={logo} alt="Plotiart" width={2172} height={724} />
             </a>
             <p>Diseño, color y creatividad para darle personalidad a tu marca y a tus momentos.</p>
+            <RedesSociales tema="oscuro" />
           </div>
 
           <nav className="footer-navigation" aria-label="Enlaces del pie de página">

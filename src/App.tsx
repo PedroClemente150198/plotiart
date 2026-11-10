@@ -6,6 +6,7 @@ import Portafolio from './components/Portafolio/Portafolio'
 import Nosotros from './components/Nosotros/Nosotros'
 import Contacto from './components/Contactos/Contacto'
 import Piepagina from './components/Piepagina/Piepagina'
+import WhatsAppFlotante from './components/WhatsAppFlotante/WhatsAppFlotante'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Contacto />
       </main>
       <Piepagina />
+      <WhatsAppFlotante />
     </>
   )
 }
