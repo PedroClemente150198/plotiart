@@ -1,0 +1,194 @@
+<!doctype html><html lang="es"><head><meta charset="UTF-8"><title>Manual Plotiart · React, Git y CI/CD</title><style>
+@page { size: A4; margin: 0; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:"DejaVu Sans",Arial,sans-serif; color:#222; background:#e7e7e7; font-size:10pt; line-height:1.5; }
+.page { width:210mm; min-height:297mm; height:297mm; padding:17mm 18mm 20mm; background:#fff; position:relative; break-after:page; overflow:hidden; }
+.page:last-child { break-after:auto; font-size:9pt; }
+.page:last-child li { margin-bottom:3px; }
+.kicker { font-size:8pt; font-weight:700; letter-spacing:1.6px; color:#656565; border-top:4px solid #f0ca00; padding-top:10px; margin-bottom:15px; }
+h1 { font-size:24pt; line-height:1.15; letter-spacing:-.8px; margin:0 0 18px; }
+p { margin:0 0 12px; } ul { padding-left:20px; margin:8px 0 14px; } li { margin-bottom:5px; }
+pre { background:#f3f4f6; color:#20242b; border:1px solid #dddfe4; border-left:3px solid #ddba00; border-radius:0 5px 5px 0; padding:10px 12px; font:8pt/1.42 "DejaVu Sans Mono",monospace; white-space:pre-wrap; overflow-wrap:anywhere; margin:0 0 13px; tab-size:2; }
+.label { font-size:7pt; color:#62646a; font-weight:bold; letter-spacing:.5px; margin:10px 0 5px; }
+table { width:100%; border-collapse:collapse; margin:12px 0 16px; font-size:9pt; line-height:1.4; } th { background:#202020; color:#fff; text-align:left; padding:8px; } td { border-bottom:1px solid #dedede; vertical-align:top; padding:8px; } td:first-child { width:33%; font-weight:600; } tr:nth-child(odd) td { background:#fafafa; }
+aside { background:#fff8d7; border-left:3px solid #e5c000; padding:10px 12px; margin:14px 0; font-size:9pt; }
+a { color:#665400; text-decoration:underline; overflow-wrap:anywhere; }
+footer { position:absolute; bottom:10mm; left:18mm; right:18mm; border-top:1px solid #ddd; padding-top:7px; color:#777; font-size:8pt; display:flex; justify-content:space-between; }
+.page:first-child { background:#171717; color:#fff; }
+.page:first-child .kicker { color:#aaa; }
+.page:first-child h1 { margin-top:25px; font-size:26pt; }
+.cover-tag { display:inline-block; padding:6px 10px; background:#ffd600; color:#171717; font-size:8pt; font-weight:700; margin-top:10px; }
+.cover-title { font-size:63pt; line-height:1.02; font-weight:900; letter-spacing:-4px; margin:22px 0; }
+.cover-title em { color:#ffd600; font-style:normal; }
+.lead { font-size:14pt; max-width:145mm; }
+.cover-meta { margin-top:25px; font-size:10pt; line-height:1.9; color:#c7c7c7; }
+.page:first-child aside { background:#292720; color:#e3e0d3; }
+@media screen { .page { margin:15px auto; box-shadow:0 2px 15px #0002; } }
+</style></head><body><section class="page"><div class="kicker">PLOTIART / RESPALDO Y CONSULTA</div><h1>De tu primera landing<br>a tu primer despliegue</h1><div class="cover-tag">MANUAL PRÁCTICO · VERSIÓN 1.0</div><div class="cover-title">React.<br>Git.<br><em>CI/CD.</em></div><p class="lead">Tu recorrido con Plotiart, explicado para repetirlo, entender los errores y continuar aprendiendo.</p><div class="cover-meta"><b>Proyecto:</b> Plotiart · Diseño y publicidad<br><b>Responsable:</b> Pedro Clemente<br><b>Fecha:</b> 9 de noviembre de 2026 · Ecuador<br><b>Stack:</b> React + TypeScript + Vite + Oxlint + GitHub Actions</div><aside>Este manual respalda el proceso y la configuración. No sustituye una copia del repositorio. Incluye el estado final y distingue los experimentos descartados de lo que quedó funcionando.</aside><footer>Plotiart · React, Git y CI/CD<span>01</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>Cómo usar este manual</h1><p>Sigue las páginas en orden si quieres reconstruir el aprendizaje. Para una tarea puntual, consulta el índice. Los recuadros distinguen comandos, contenido de archivos y resultados esperados.</p><table><tr><th>Páginas</th><th>Contenido</th></tr><tr><td>3–5</td><td>Estructura del proyecto, React, menú, logo y pie de página</td></tr><tr><td>6–7</td><td>Git, repositorio local, ramas y primera subida</td></tr><tr><td>8–10</td><td>Comprobaciones, archivo de CI y Pull Requests</td></tr><tr><td>11–13</td><td>Vite, archivo de CD y publicación en Pages</td></tr><tr><td>14</td><td>Rutina para trabajar y publicar nuevas versiones</td></tr><tr><td>15–16</td><td>Errores reales y cómo diagnosticarlos</td></tr><tr><td>17</td><td>VPS, privacidad y protección de algoritmos</td></tr><tr><td>18</td><td>Respaldo, ejercicios y documentación oficial</td></tr></table><div class="label">TERMINAL · comando que puedes ejecutar</div><pre>git status</pre><div class="label">ARCHIVO · fragmento para editar en vite.config.ts</div><pre>base: &#x27;/plotiart/&#x27;,</pre><div class="label">SALIDA DE EJEMPLO · no la ejecutes</div><pre>3 files changed</pre><aside>Copia únicamente bloques marcados TERMINAL. No copies el prompt, mensajes de salida, tablas ni fragmentos de TypeScript o YAML a la terminal. Una URL se abre en el navegador.</aside><footer>Plotiart · React, Git y CI/CD<span>02</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>01 · Conoce tu proyecto</h1><p>React construye la interfaz mediante componentes. TypeScript revisa el código. Vite ejecuta el entorno de desarrollo y prepara la versión publicable. Oxlint revisa reglas de código.</p><div class="label">ESTRUCTURA · guía visual, no son comandos</div><pre>plotiart/
+├── .github/workflows/
+│   ├── ci.yml
+│   └── deploy.yaml
+├── src/
+│   ├── assets/plotiart-logo.png
+│   ├── components/
+│   │   ├── Menu/        ├── Inicio/
+│   │   ├── Servicios/   ├── Portafolio/
+│   │   ├── Nosotros/    ├── Contactos/
+│   │   └── Piepagina/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── main.tsx
+│   └── index.css
+├── public/
+├── package.json
+├── package-lock.json
+└── vite.config.ts</pre><table><tr><th>Archivo o carpeta</th><th>Responsabilidad</th></tr><tr><td>main.tsx</td><td>Monta React, activa StrictMode e importa el CSS global.</td></tr><tr><td>App.tsx</td><td>Reúne el menú, las secciones dentro de main y el footer.</td></tr><tr><td>components/</td><td>Cada sección vive en su propia carpeta. Inicio no contiene las demás secciones.</td></tr><tr><td>package.json</td><td>Scripts y dependencias. private: true evita publicar el paquete en npm; no hace privado GitHub.</td></tr><tr><td>package-lock.json</td><td>Versiones resueltas de dependencias; se conserva en Git.</td></tr><tr><td>node_modules/ y dist/</td><td>Dependencias instaladas y salida compilada; se regeneran.</td></tr></table><footer>Plotiart · React, Git y CI/CD<span>03</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>02 · Componentes y estilos</h1><p>Al revisar la plantilla, la compilación fallaba por variables sin uso: count, setCount y una importación de StrictMode. Se eliminaron los estados sobrantes y después se activó StrictMode envolviendo App. StrictMode ayuda a detectar problemas durante el desarrollo.</p><div class="label">ARCHIVO · src/main.tsx</div><pre>import { StrictMode } from &#x27;react&#x27;
+import { createRoot } from &#x27;react-dom/client&#x27;
+import App from &#x27;./App.tsx&#x27;
+import &#x27;./index.css&#x27;
+
+createRoot(document.getElementById(&#x27;root&#x27;)!).render(
+  &lt;StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/StrictMode&gt;,
+)</pre><p>La página quedó organizada en Menu, Inicio, Servicios, Portafolio, Nosotros, Contacto y Piepagina. App conserva un único elemento main para el contenido principal; menú y pie quedan fuera.</p><p>El espacio exterior inicial venía del margen que el navegador aplica al body. El CSS que lo eliminaba no estaba importado. Se conectó index.css y se dejó esta base:</p><div class="label">ARCHIVO · src/index.css, fragmento</div><pre>*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }</pre><aside>margin es espacio exterior; padding es espacio interior. Quitamos el margen del body, pero conservamos padding dentro del menú para que logo y enlaces no queden pegados al borde.</aside><footer>Plotiart · React, Git y CI/CD<span>04</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>03 · Menú, navegación y marca</h1><p>El menú usa useState para saber si está abierto en celular y useRef para devolver el foco al botón al presionar Escape desde los enlaces. El estado cambia la interfaz; la referencia permite acceder a un elemento DOM concreto.</p><div class="label">CÓDIGO DE CONSULTA · fragmentos, no es un archivo completo</div><pre>const [isOpen, setIsOpen] = useState(false)
+const toggleRef = useRef&lt;HTMLButtonElement&gt;(null)
+
+// Dentro del botón:
+onClick={() =&gt; setIsOpen((open) =&gt; !open)}
+
+// Al cerrar con Escape desde los enlaces:
+setIsOpen(false)
+toggleRef.current?.focus()</pre><p>Se añadieron aria-expanded, aria-controls, nombres accesibles y estilos de foco. El menú adapta su distribución al ancho de pantalla y cierra al elegir un enlace.</p><p>Un enlace a /servicios solicita otra dirección al navegador. Como esta landing usa secciones, cambiamos las rutas por fragmentos:</p><div class="label">ARCHIVO TSX · ejemplo de enlace y destino</div><pre>&lt;a href=&quot;#servicios&quot;&gt;Servicios&lt;/a&gt;
+&lt;section id=&quot;servicios&quot;&gt;...&lt;/section&gt;</pre><p>El identificador debe coincidir exactamente. El desplazamiento suave está en App.css y se desactiva si el dispositivo pide reducir movimiento.</p><p><b>Logo:</b> se probaron texto, una imagen generada, animación por recortes y un SVG geométrico. Los intentos de la letra A no gustaron y se volvió a la imagen PNG estática. No se afirma que la imagen generada sea idéntica al original. Logo.tsx conserva un experimento que el menú ya no importa.</p><p><b>Pie de página:</b> Piepagina.tsx y Piepagina.css incluyen logo, llamada a contacto, navegación, servicios, año y enlace para volver al inicio. No se inventaron teléfonos ni correos.</p><footer>Plotiart · React, Git y CI/CD<span>05</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>04 · Git: local y remoto</h1><p>Git registra versiones. GitHub aloja una copia remota. Tener una carpeta en tu equipo o crear un repositorio en GitHub no conecta ambos automáticamente.</p><table><tr><th>Concepto</th><th>Qué significa</th></tr><tr><td>Repositorio local</td><td>Archivos e historial gestionados por la carpeta .git.</td></tr><tr><td>Rama</td><td>Una línea de trabajo dentro del mismo repositorio.</td></tr><tr><td>Working tree</td><td>Tus archivos tal como están en el disco.</td></tr><tr><td>Staging / índice</td><td>Contenido preparado para el próximo commit.</td></tr><tr><td>Commit</td><td>Una versión guardada localmente.</td></tr><tr><td>origin</td><td>Nombre asignado al repositorio remoto.</td></tr><tr><td>Push / fetch / pull</td><td>Enviar commits / descargar historial / descargar e integrar.</td></tr><tr><td>Pull Request</td><td>Propuesta de integrar una rama en otra; todavía no es el merge.</td></tr></table><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git status
+git branch --show-current
+git remote -v
+git --no-pager log --oneline -5</pre><p>Crear una rama desde src también afecta a todo el repositorio. Git busca la carpeta .git en los directorios superiores.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git switch -c devops/ci-cd</pre><p>switch cambia de rama y -c crea una nueva desde tu posición actual. Usamos devops/ci-cd para CI y luego devops/deploy para el despliegue.</p><aside>El nombre de una rama organiza tu trabajo; no decide por sí solo cuándo corre CI. Eso se configura con los eventos del workflow.</aside><footer>Plotiart · React, Git y CI/CD<span>06</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>05 · Primera subida y conexión local</h1><p>El repositorio se creó en PedroClemente150198/plotiart. La primera subida se hizo desde una copia temporal porque la sesión tenía restringida .git. Por eso al principio git status fallaba en la carpeta original. Después se inicializó Git allí, se descargó el historial y se vinculó main con origin/main, conservando los archivos.</p><p>El remoto final utiliza SSH:</p><div class="label">DIRECCIÓN REMOTA · no es un comando</div><pre>git@github.com:PedroClemente150198/plotiart.git</pre><p>En un proyecto nuevo que todavía no tiene historial ni remoto, una secuencia inicial sería:</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git init -b main
+git add .
+git commit -m &quot;Versión inicial del proyecto&quot;
+git remote add origin git@github.com:PedroClemente150198/plotiart.git
+git push -u origin main</pre><aside>No repitas esa inicialización en tu proyecto actual: ya está conectado. Si el remoto ya tiene commits, clónalo para empezar desde su historial en lugar de crear otro historial independiente.</aside><p>El .gitignore excluye node_modules, dist, variables de entorno, configuraciones locales y output. Se subieron src, public, configuración y package-lock.json. Un archivo ya registrado no deja de estarlo por añadirlo después al .gitignore.</p><p>La clave privada SSH permanece en tu equipo; no se copia al repositorio. Si HTTPS pide credenciales y SSH ya funciona, el remoto SSH permite reutilizar ese acceso.</p><p>Primer commit: <b>0fce4e8</b>, “Versión inicial de la landing de Plotiart”. Esta referencia documenta el punto inicial, no debe copiarse para sobrescribir versiones posteriores.</p><footer>Plotiart · React, Git y CI/CD<span>07</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>06 · Validar antes de subir</h1><p>Antes de automatizar, ejecutaste manualmente los mismos pasos que luego haría GitHub. Trabaja desde la raíz, donde está package.json.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>npm ci
+npm run lint -- --deny-warnings
+npm run build</pre><table><tr><th>Comando</th><th>Qué comprueba o produce</th></tr><tr><td>npm ci</td><td>Instala dependencias conforme al lockfile. Sustituye node_modules y falla si package.json y el lockfile no concuerdan.</td></tr><tr><td>npm run lint -- --deny-warnings</td><td>Ejecuta Oxlint. El separador -- pasa la opción al linter para tratar advertencias como fallo.</td></tr><tr><td>npm run build</td><td>Ejecuta tsc -b y vite build. Revisa la compilación y genera dist.</td></tr><tr><td>npm run dev</td><td>Servidor de desarrollo con actualización al editar.</td></tr><tr><td>npm run preview</td><td>Vista local de la compilación; no es un servidor de producción.</td></tr></table><p>Tus resultados fueron: instalación completada, 0 advertencias, 0 errores y compilación exitosa. El aviso de financiación de npm era informativo. PLUGIN_TIMINGS informaba tiempos de plugins; no significaba que la compilación había fallado.</p><p>Puedes comprobar visualmente la compilación:</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>npm run preview</pre><p>Abre la URL que muestre Vite incluyendo /plotiart/. Detén el servidor con Ctrl+C.</p><aside>Lint y build no sustituyen las pruebas de comportamiento. Este proyecto todavía no tiene una suite automatizada que compruebe, por ejemplo, abrir el menú o navegar por teclado.</aside><footer>Plotiart · React, Git y CI/CD<span>08</span></footer></section><section class="page"><div class="kicker">PLOTIART / CONFIGURACIÓN REAL</div><h1>07 · CI: archivo de referencia</h1><p>Ubicación real: <b>.github/workflows/ci.yml</b>. Este contenido corresponde al archivo revisado al generar el manual. YAML usa espacios para la sangría.</p><div class="label">ARCHIVO YAML · .github/workflows/ci.yml</div><pre>name: CI PLOTIART
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_call:
+    inputs:
+      publish:
+        description: Preparar el artefacto para GitHub Pages
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Revisar y compilar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v6
+
+      - name: Preparar Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Revisar código
+        run: npm run lint -- --deny-warnings
+
+      - name: Compilar proyecto
+        run: npm run build
+
+      - name: Guardar sitio compilado
+        if: inputs.publish == true
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist</pre><footer>Plotiart · React, Git y CI/CD<span>09</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>08 · CI y tu primer Pull Request</h1><table><tr><th>Bloque de CI</th><th>Cómo funciona</th></tr><tr><td>pull_request → branches: [main]</td><td>Valida propuestas cuyo destino es main, al abrirlas o actualizarlas.</td></tr><tr><td>workflow_call</td><td>Permite que otro workflow reutilice este trabajo.</td></tr><tr><td>inputs.publish</td><td>Booleano; false por defecto. CD lo activa para guardar el resultado.</td></tr><tr><td>contents: read</td><td>Permiso de lectura del código para el token del workflow.</td></tr><tr><td>validate / ubuntu-latest</td><td>Identificador del trabajo y entorno de ejecución Linux.</td></tr><tr><td>checkout / setup-node</td><td>Obtiene el código y prepara Node 24 con caché de npm.</td></tr><tr><td>upload-pages-artifact</td><td>Empaqueta dist para que el trabajo de publicación lo utilice. Solo se ejecuta si publish es true.</td></tr></table><p>Al abrir un Pull Request no publicamos nada. El trabajo instala, revisa y compila. En la ejecución de CD, ese mismo workflow también guarda el artefacto.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git add .github/workflows/ci.yml
+git --no-pager diff --cached
+git commit -m &quot;Configura CI para los pull requests&quot;
+git push -u origin devops/ci-cd</pre><p><b>En el navegador:</b> repositorio → Pull requests → New pull request. Elige base: main y compare: devops/ci-cd. Revisa los cambios, pon un título y crea la propuesta.</p><p>En Checks o Actions abre “Revisar y compilar”. Amarillo significa pendiente o en ejecución; verde, éxito; rojo, fallo. En tu primer PR la comprobación terminó correctamente. Después integraste con Merge pull request → Confirm merge.</p><aside>CI verde no impide por sí solo integrar código que falla en otra ocasión. Para exigir estas comprobaciones hay que configurar reglas de protección o un ruleset. Esa protección no se configuró durante este recorrido.</aside><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git switch main
+git pull --ff-only origin main</pre><footer>Plotiart · React, Git y CI/CD<span>10</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>09 · Preparar la publicación</h1><p>GitHub Pages publica archivos estáticos. Vite prepara esos archivos en dist; no publicamos el servidor de desarrollo ni node_modules.</p><p>Para el repositorio plotiart se configuró esta ruta base:</p><div class="label">ARCHIVO · vite.config.ts</div><pre>import react, { reactCompilerPreset } from &#x27;@vitejs/plugin-react&#x27;
+import babel from &#x27;@rolldown/plugin-babel&#x27;
+import { defineConfig } from &#x27;vite&#x27;
+
+// https://vite.dev/config/
+export default defineConfig({
+  base: &#x27;/plotiart/&#x27;,
+  plugins: [
+    react(),
+    babel({ presets: [reactCompilerPreset()] })
+  ],
+})</pre><p>El sitio se publica bajo /plotiart/. base permite construir las direcciones correctas de los recursos. Si en el futuro publicas en la raíz de un dominio propio, normalmente usarías / como base.</p><p>Durante la implementación se creó la rama devops/deploy. Se actualizaron CI y Vite, y se añadió deploy.yaml. Las extensiones .yml y .yaml funcionan, pero Git requiere que uses el nombre real del archivo.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git add .github/workflows/ci.yml .github/workflows/deploy.yaml vite.config.ts
+git --no-pager diff --cached --stat
+git commit -m &quot;Configura despliegue manual a GitHub Pages&quot;
+git push -u origin devops/deploy</pre><p>Se abrió un segundo Pull Request hacia main. Una vez CI pasó, se integró. El workflow manual debe existir en la rama principal para aparecer como ejecución manual en Actions.</p><aside>Tu cambio de despliegue quedó registrado en el commit 653079d. Los identificadores de commit sirven para localizar y comparar versiones; no son comandos.</aside><footer>Plotiart · React, Git y CI/CD<span>11</span></footer></section><section class="page"><div class="kicker">PLOTIART / CONFIGURACIÓN REAL</div><h1>10 · CD: archivo de referencia</h1><p>Ubicación real: <b>.github/workflows/deploy.yaml</b>. El despliegue sigue siendo manual: un push o un merge por sí solos no publican la página.</p><div class="label">ARCHIVO YAML · .github/workflows/deploy.yaml</div><pre>name: CD PLOTIART
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: github-pages
+    cancel-in-progress: false
+
+jobs:
+    build:
+        name: Validar y preparar sitio
+        if: github.ref == &#x27;refs/heads/main&#x27;
+        uses: ./.github/workflows/ci.yml
+        with:
+            publish: true
+
+    deploy:
+        name: Publicar en GitHub Pages
+        needs: build
+        runs-on: ubuntu-latest
+        
+        permissions:
+            pages: write
+            id-token: write
+            
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Configurar GitHub Pages
+              uses: actions/configure-pages@v5
+            
+            - name: Publicar sitio
+              id: deployment
+              uses: actions/deploy-pages@v4</pre><footer>Plotiart · React, Git y CI/CD<span>12</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>11 · Entender y ejecutar CD</h1><table><tr><th>Bloque de CD</th><th>Responsabilidad</th></tr><tr><td>workflow_dispatch</td><td>Habilita el botón Run workflow.</td></tr><tr><td>concurrency</td><td>Limita publicaciones simultáneas del mismo grupo; no garantiza desplegar toda ejecución intermedia.</td></tr><tr><td>if: github.ref == refs/heads/main</td><td>Permite construir para publicación únicamente desde main.</td></tr><tr><td>uses: ./.github/workflows/ci.yml</td><td>Llama al CI local del mismo commit. No se duplican los comandos.</td></tr><tr><td>publish: true</td><td>Activa la subida del artefacto de Pages.</td></tr><tr><td>needs: build</td><td>Espera a que la preparación termine correctamente.</td></tr><tr><td>pages: write / id-token: write</td><td>Permisos que requiere el trabajo de publicación.</td></tr><tr><td>environment: github-pages</td><td>Registra el destino del despliegue y su enlace. No equivale por sí solo a exigir aprobación humana.</td></tr><tr><td>deploy-pages</td><td>Publica el artefacto producido por el trabajo anterior.</td></tr></table><p><b>Configuración que hiciste en el navegador:</b></p><ul><li>El repositorio inicialmente era privado. Pages mostró que con ese plan había que cambiar visibilidad o actualizar el plan. Decidiste hacerlo público.</li><li>En Settings → Pages → Build and deployment → Source seleccionaste GitHub Actions. No había que configurar las tarjetas de Jekyll o Static HTML.</li><li>El campo Custom domain quedó vacío; utilizamos la dirección de GitHub Pages.</li><li>En Actions elegiste CD PLOTIART → Run workflow → main → Run workflow.</li></ul><p>El trabajo “Validar y preparar sitio” terminó con éxito y guardó el sitio compilado. Después “Publicar en GitHub Pages” también terminó con éxito. Esa fue la evidencia del primer despliegue.</p><p><b>Web:</b> <a href="https://pedroclemente150198.github.io/plotiart/">pedroclemente150198.github.io/plotiart/</a><br><b>Ejecución:</b> <a href="https://github.com/PedroClemente150198/plotiart/actions/runs/42750246163">CD PLOTIART · primera publicación</a></p><footer>Plotiart · React, Git y CI/CD<span>13</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>12 · Tu rutina para el próximo cambio</h1><p>Este es el ciclo que puedes repetir. El nombre de rama y el mensaje son ejemplos: elige otros que describan tu siguiente tarea.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git switch main
+git pull --ff-only origin main
+git switch -c mejora/texto-inicio</pre><p>1. Confirma que no tienes cambios pendientes antes de cambiar de tarea. Edita el componente correspondiente y guarda el archivo. Comprueba la interfaz con npm run dev.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>npm run lint -- --deny-warnings
+npm run build
+git status
+git diff</pre><p>2. Cuando esté correcto, prepara únicamente los archivos de esa tarea. Este ejemplo asume que editaste Inicio.tsx:</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git add src/components/Inicio/Inicio.tsx
+git --no-pager diff --cached
+git commit -m &quot;Mejora el texto de inicio&quot;
+git push -u origin mejora/texto-inicio</pre><p>3. En GitHub abre el PR hacia main, revisa Files changed y espera CI verde. Integra la propuesta. Después ejecuta CD PLOTIART manualmente desde main si quieres publicar ese cambio.</p><p>4. Revisa que la ejecución termine correctamente y prueba el sitio publicado: logo, estilos, enlaces y menú en móvil. Una publicación exitosa no reemplaza la comprobación visual.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git switch main
+git pull --ff-only origin main</pre><aside>Cada publicación debe poder vincularse con un commit. Si necesitas recuperar una versión, identifica el cambio, crea una corrección o un revert mediante PR y publica de nuevo. No necesitas sobrescribir el historial con force push.</aside><footer>Plotiart · React, Git y CI/CD<span>14</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>13 · Errores de terminal que resolvimos</h1><table><tr><th>Mensaje o síntoma</th><th>Causa y solución</th></tr><tr><td>fatal: no es un repositorio git</td><td>La carpeta no tenía metadatos válidos de Git. Se inicializó y conectó al historial existente. Si estás en otra carpeta, revisa primero pwd y git status.</td></tr><tr><td>Ruta deploy.yml no coincide con ningún archivo</td><td>El archivo real se llamaba deploy.yaml. Revisa ls -la .github/workflows y utiliza el nombre exacto.</td></tr><tr><td>zsh: command not found: base:</td><td>Se pegó TypeScript en la terminal. base va dentro de defineConfig en vite.config.ts.</td></tr><tr><td>Permiso denegado al escribir ci.yml como comando</td><td>Se intentó ejecutar un archivo de configuración. Ábrelo en el editor; no cambies sus permisos para arreglar esto.</td></tr><tr><td>command not found: 14 o 40</td><td>Se pegó el resumen de un diff como si fueran comandos. Las cifras y barras del resumen son salida informativa.</td></tr><tr><td>La terminal muestra una ✗</td><td>El tema del prompt puede marcar archivos modificados o sin seguimiento. git status es la referencia para entender el estado real.</td></tr><tr><td>Everything up-to-date</td><td>No había commits nuevos que enviar a esa rama remota. No es un fallo.</td></tr><tr><td>git diff parece no mostrar nada</td><td>Puede no haber diferencias o haberse abierto un visor. Usa git --no-pager diff --cached --stat y git status. Para salir del visor, q.</td></tr></table><p>Un error al ejecutar un texto equivocado no significa automáticamente que hayas perdido el código. Primero consulta el estado y lee el mensaje completo; no recurras a reset --hard ni a comandos de borrado para intentar arreglarlo.</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>pwd
+git status
+ls -la .github/workflows
+git --no-pager diff --cached --stat</pre><footer>Plotiart · React, Git y CI/CD<span>15</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>14 · Errores de interfaz y publicación</h1><table><tr><th>Problema</th><th>Qué revisar</th></tr><tr><td>Espacio alrededor del menú</td><td>Importación del CSS global y body { margin: 0; }.</td></tr><tr><td>La página se recarga al pulsar un enlace</td><td>Para secciones usa #inicio y #servicios, con id coincidente. Para varias vistas reales se necesitaría otra solución de navegación.</td></tr><tr><td>No encuentra el logo tras mover Menu.tsx</td><td>Desde components/Menu/Menu.tsx la imagen está en ../../assets/plotiart-logo.png. Cada ../ sube un nivel.</td></tr><tr><td>El botón de contacto aparece duplicado</td><td>Si ya está en el array links, genéralo una sola vez en map y aplica la clase según isContact.</td></tr><tr><td>La A del logo se deforma</td><td>El recorte de una imagen no separa de manera limpia una letra. El estado final usa PNG sin animación; el SVG experimental no está conectado.</td></tr><tr><td>No aparece Run workflow</td><td>Comprueba que el YAML incluya workflow_dispatch y esté integrado en la rama principal.</td></tr><tr><td>Build o deploy en rojo</td><td>Abre la ejecución en Actions, entra al trabajo y lee el primer paso fallido. No vuelvas a ejecutar sin entender qué falló.</td></tr><tr><td>La web no carga recursos</td><td>Comprueba base: /plotiart/, el nombre exacto del repositorio y las direcciones de recursos en el navegador.</td></tr><tr><td>404 después de publicar</td><td>Comprueba la URL completa y el estado del despliegue. Un 404 de github.com puede ser un enlace al repositorio equivocado; no demuestra un fallo de la web en github.io.</td></tr></table><p>Durante el proceso apareció una captura de 404 sin dirección visible. Se consultó Actions y ambos trabajos ya habían terminado correctamente. La dirección correcta para visitar la web es la de github.io, incluyendo /plotiart/.</p><aside>El portafolio y el contacto tienen textos provisionales. Publicar la landing no crea un formulario, no envía correos ni añade canales de contacto reales. Esas funcionalidades quedan para próximos cambios.</aside><footer>Plotiart · React, Git y CI/CD<span>16</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>15 · VPS y algoritmos privados</h1><p>Una VPS es un servidor que administras. No se configuró ninguna durante este recorrido; esta página resume la arquitectura que hablamos como siguiente etapa.</p><table><tr><th>Capa</th><th>Qué haría</th></tr><tr><td>CI en GitHub Actions</td><td>Valida y compila; genera dist.</td></tr><tr><td>CD para VPS</td><td>Envía el artefacto mediante SSH y activa una nueva versión.</td></tr><tr><td>Nginx</td><td>Entrega los archivos estáticos al navegador.</td></tr><tr><td>Dominio y HTTPS</td><td>Apuntan al servidor y protegen el tráfico.</td></tr><tr><td>Operación</td><td>Actualizaciones, accesos, monitoreo, respaldo y recuperación a tu cargo.</td></tr></table><p>Para esta landing estática no hace falta mantener Node ejecutándose en producción. Tampoco se usa npm run dev o npm run preview como servidor público. Si publicas en la raíz de un dominio, adapta la base de Vite.</p><p><b>Qué significa proteger tus algoritmos:</b> el navegador recibe el HTML, CSS y JavaScript del frontend, incluso con un repositorio privado o una VPS. Minificar u ofuscar no lo convierte en secreto.</p><div class="label">ARQUITECTURA · ejemplo conceptual</div><pre>Navegador (React)
+      │ envía datos por HTTPS
+      ▼
+API en el servidor
+      │ ejecuta la lógica privada
+      ▼
+Respuesta con el resultado, sin entregar el código fuente</pre><p>Una lógica sensible debe ejecutarse en el backend, con autenticación y límites adecuados. No envíes claves privadas al frontend. Un repositorio privado protege el acceso al repositorio; no evita que los visitantes inspeccionen el código que reciben.</p><aside>Una VPS tampoco impide por sí sola el acceso del proveedor de infraestructura al servidor. Si ese fuera tu requisito, habría que estudiar otro modelo de confianza. No se implementó ningún backend ni migración a VPS.</aside><footer>Plotiart · React, Git y CI/CD<span>17</span></footer></section><section class="page"><div class="kicker">PLOTIART / MANUAL DE APRENDIZAJE</div><h1>16 · Respaldo y próximos ejercicios</h1><p><b>Guarda dos cosas:</b> este manual y una copia del código con su historial. El PDF documenta el aprendizaje; el repositorio contiene los archivos que puedes reconstruir.</p><div class="label">TERMINAL · recuperar el proyecto en una carpeta nueva</div><pre>git clone git@github.com:PedroClemente150198/plotiart.git
+cd plotiart
+npm ci
+npm run dev</pre><p>Ejecuta el clon desde una carpeta padre donde aún no exista plotiart. Para crear además un respaldo transportable de los commits y referencias locales:</p><div class="label">TERMINAL · ejecuta estos comandos</div><pre>git bundle create ../plotiart-respaldo.bundle --all</pre><p>El bundle no incluye cambios sin commit, archivos sin seguimiento ni secretos ignorados. No guarda la configuración de Pages, los secrets ni el historial de ejecuciones de Actions. Guarda esas configuraciones por separado cuando sean necesarias.</p><p><b>Ejercicios para continuar:</b></p><ul><li>Añade una tarjeta de servicio en una rama nueva y recorre el ciclo PR → CI → merge → CD.</li><li>En una rama de práctica, deja una variable sin uso, observa el fallo y corrígelo. No integres el error.</li><li>Añade una prueba útil del menú móvil; luego incorpora su ejecución a CI.</li><li>Configura una regla que exija CI antes de integrar en main. Comprueba las condiciones de tu cuenta.</li><li>Optimiza el PNG del logo conservando el original y compara el resultado visual.</li><li>Más adelante, practica staging, versiones de acciones fijadas por SHA y despliegues recuperables.</li></ul><p><b>Documentación oficial de consulta:</b></p><ul><li><a href="https://react.dev/learn">React · aprender componentes y estado</a></li><li><a href="https://react.dev/learn/referencing-values-with-refs">React · referencias con useRef</a></li><li><a href="https://vite.dev/guide/static-deploy">Vite · compilación y despliegue estático</a></li><li><a href="https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows">GitHub · reutilizar workflows</a></li><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">GitHub · workflows para Pages</a></li></ul><p>Configuración transcrita del proyecto al 9 de noviembre de 2026. Las versiones de herramientas y opciones de GitHub pueden cambiar: revisa las fuentes al actualizar el pipeline.</p><footer>Plotiart · React, Git y CI/CD<span>18</span></footer></section></body></html>

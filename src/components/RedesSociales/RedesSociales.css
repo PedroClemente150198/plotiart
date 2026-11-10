@@ -1,0 +1,61 @@
+.redes-sociales {
+  margin-top: 24px;
+  --redes-texto: #504a3e;
+  --redes-borde: #e0dbce;
+  --redes-fondo-hover: #fff6c9;
+  --redes-foco: #8a7300;
+}
+
+.redes-sociales--oscuro {
+  --redes-texto: #dedbd3;
+  --redes-borde: #45443e;
+  --redes-fondo-hover: #33301d;
+  --redes-foco: #ffd600;
+}
+
+.redes-sociales .redes-sociales-title {
+  margin: 0 0 12px;
+  color: var(--redes-texto);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.redes-sociales ul,
+.footer .redes-sociales ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.redes-sociales a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 13px;
+  border: 1px solid var(--redes-borde);
+  border-radius: 7px;
+  color: var(--redes-texto);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.redes-sociales a:hover {
+  background: var(--redes-fondo-hover);
+  border-color: var(--redes-foco);
+}
+
+.redes-sociales a:focus-visible {
+  outline: 3px solid var(--redes-foco);
+  outline-offset: 4px;
+}
+
+.redes-sociales-arrow {
+  margin-left: 4px;
+  color: var(--redes-foco);
+}
