@@ -1,0 +1,40 @@
+name: CD PLOTIART
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: github-pages
+    cancel-in-progress: false
+
+jobs:
+    build:
+        name: Validar y preparar sitio
+        if: github.ref == 'refs/heads/main'
+        uses: ./.github/workflows/ci.yml
+        with:
+            publish: true
+
+    deploy:
+        name: Publicar en GitHub Pages
+        needs: build
+        runs-on: ubuntu-latest
+        
+        permissions:
+            pages: write
+            id-token: write
+            
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Configurar GitHub Pages
+              uses: actions/configure-pages@v5
+            
+            - name: Publicar sitio
+              id: deployment
+              uses: actions/deploy-pages@v4
