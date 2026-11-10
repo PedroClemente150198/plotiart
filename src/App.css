@@ -1,0 +1,41 @@
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.landing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.landing-section {
+  padding: 72px 0;
+  scroll-margin-top: 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.landing-section:focus-visible {
+  outline: 2px solid #8a7300;
+  outline-offset: 4px;
+}
+
+.landing h2 {
+  font-size: 30px;
+  margin: 0 0 20px;
+}
+
+.landing p {
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .landing {
+    padding: 0 20px;
+  }
+}

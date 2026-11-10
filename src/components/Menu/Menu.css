@@ -1,0 +1,134 @@
+.site-header {
+    background: #171717;
+    border-bottom: 1px solid #353535;
+    border-top: 3px solid #ffd600;
+    box-shadow: 0 4px 24px #00000012;
+}
+
+.menu {
+    max-width: 1200px;
+    min-height: 96px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+.menu-logo {
+    display: block;
+    width: clamp(150px, 20vw, 210px);
+    height: auto;
+}
+
+.menu-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-links a {
+    display: block;
+    padding: 11px 14px;
+    border-radius: 10px;
+    color: #eeeeee;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 160ms, background-color 160ms;
+}
+
+.menu-links a:hover {
+    color: #ffd600;
+    background: #292929;
+}
+
+.menu-links .menu-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: 16px;
+    padding: 13px 20px;
+    background: #ffd600;
+    color: #171717;
+}
+
+.menu-links .menu-contact:hover {
+    background: #eac400;
+    color: #171717;
+}
+
+.menu-contact span {
+    font-size: 20px;
+}
+
+.menu a:focus-visible,
+.menu-toggle:focus-visible {
+    outline: 3px solid #ffd600;
+    outline-offset: 4px;
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid #484848;
+    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    background: #242424;
+    color: #eac400;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .menu {
+        min-height: 80px;
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .menu-toggle {
+        display: grid;
+        place-items: center;
+    }
+
+    .menu-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        border-top: 1px solid #353535;
+        padding-top: 12px;
+    }
+
+    .menu-links.is-open {
+        display: flex;
+    }
+
+    .menu-links .menu-contact {
+        margin: 4px 0 0;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-links a {
+        transition: none;
+    }
+}

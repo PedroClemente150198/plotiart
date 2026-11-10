@@ -1,0 +1,42 @@
+.inicio {
+  padding: 100px 0;
+}
+
+.inicio-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.inicio-title {
+  max-width: 700px;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+.inicio-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  background: #ffd600;
+  color: #171717;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.inicio-button:hover {
+  background: #eac400;
+}
+
+.inicio-button:focus-visible {
+  outline: 3px solid #8a7300;
+  outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .inicio {
+    padding: 64px 0;
+  }
+}

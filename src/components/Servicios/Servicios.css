@@ -1,0 +1,26 @@
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-list li {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-top: 3px solid #ffd600;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.service-list h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .service-list {
+    grid-template-columns: 1fr;
+  }
+}
